@@ -1,5 +1,7 @@
 # Master Project
 ## Prerequisites
-## Setup
+## iOS App
+## Data Management
+## Neural Network
 ## Results
 ## Literature
