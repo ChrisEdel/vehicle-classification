@@ -3,8 +3,7 @@
 ## iOS App
 ## Data Management
 ## Neural Network
-1. If you have access to a GPU and want to use that GPU for training the neural network, you need to have CUDA installed.
-Please refer to the corresponding installation guide:
+1. If you have access to a GPU and want to use that GPU for training the neural network, you need to have CUDA installed. Please refer to the corresponding installation guide:
 ⋅⋅* [Linux] (https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
 ⋅⋅* [Windows] (https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html)
 2. You need to have Python 3.8 64-bit installed.
