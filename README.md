@@ -3,15 +3,20 @@
 ## iOS App
 ## Data Management
 ## Neural Network
-1. If you have access to a GPU and want to use that GPU for training the neural network, you need to have CUDA installed (tested with *CUDA 11.3* (on Linux) and *CUDA 11.2* (on Windows 10)). Please refer to the corresponding installation guide:  
+Here you can find the instructions on how to train and test our neural network.
+
+1. Clone this repository.
+2. If you have access to a GPU and want to use that GPU for training the neural network, you need to have CUDA installed (tested with *CUDA 11.3* (on Linux) and *CUDA 11.2* (on Windows 10)). Please refer to the corresponding installation guide:  
   - [Linux](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
   - [Windows](//docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html)
-2. You need to have *Python 3.8 64-bit* installed.
-3. Install all of the necessary requirements. In order to do that, you can use the following command:  
+3. You need to have *Python 3.8 64-bit* installed.
+4. Go into the corresponding directory:  
+```cd color3Dnet```
+5. Install all of the necessary requirements. In order to do that, you can use the following command:  
 ```pip3 install -r requirements.txt```
-4. Run the script:  
+6. Run the script:  
 ```python3 color3Dnet.py [data_path]```
-5. For further information, run:  
+7. For further information, run:  
 ```python3 color3Dnet.py -h```
 
 The data for training and testing the neural network can be downloaded [here](https://drive.google.com/file/d/1JBKiznmEAJ4bmBXLSUrOOJJwTacLlc63/view?usp=sharing). Note that this data is already preprocessed with:
