@@ -4,8 +4,12 @@
 ## Data Management
 ## Neural Network
 1. If you have access to a GPU and want to use that GPU for training the neural network, you need to have CUDA installed. Please refer to the corresponding installation guide:  
-  * [Linux] (https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
-  * [Windows] (https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html)
+  * [Linux] [1]()
+  * [Windows] [2]
+  * [MacOS] [3] 
+  [1]: https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html
+  [2]: https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html)
+  [3]: #TODO
 2. You need to have *Python 3.8 64-bit* installed.
 3. Install all of the necessary requirements. In order to do that, you can use the following command:  
 ```pip3 install -r requirements.txt```
