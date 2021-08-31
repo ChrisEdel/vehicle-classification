@@ -10,11 +10,11 @@ Here you can find the instructions on how to train and test our neural network.
   - [Linux](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
   - [Windows](//docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html)
 3. You need to have *Python 3.8 64-bit* installed.
-4. Install all of the necessary requirements. In order to do that, you can use the following command:  
-```pip3 install -r requirements.txt```
-5. Go into the corresponding directory:  
+4. Go into the corresponding directory:  
 ```cd color3Dnet```
-7. Run the script:  
+5. Install all of the necessary requirements. In order to do that, you can use the following command:  
+```pip3 install -r requirements.txt```
+6. Run the script:  
 ```python3 color3Dnet.py [data_path]```
 7. For further information, run:  
 ```python3 color3Dnet.py -h```
