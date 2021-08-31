@@ -158,8 +158,6 @@ def main(paths, granularity='manufacturer_main', split=0.2, augmentation_split=F
         xc = layers.GlobalMaxPooling1D()(xc)
 
         x = layers.Concatenate()([x, xc])
-        # x = dense_bn(x, 1024) # extra layer for 25k
-        # x = layers.Dropout(dropout)(x) # extra layer for 25k
         x = dense_bn(x, 512)
         x = layers.Dropout(dropout)(x)
         x = dense_bn(x, 256)
@@ -285,7 +283,7 @@ def main(paths, granularity='manufacturer_main', split=0.2, augmentation_split=F
 
     print('Save general information (arguments provided, runtime, ...)')
     # other info
-    with open(os.path.join(artifacts_dir, 'info.txt'), 'w') as file:
+    with open(os.path.join(artifacts_dir, 'info-{}.txt'.format(experiment_name)), 'w') as file:
         file.write('Experiment name: {}\n'.format(experiment_name))
         file.write('\n')
         file.write('best_train_loss: {}\n'.format(train_loss))
