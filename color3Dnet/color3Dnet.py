@@ -10,8 +10,8 @@ import tensorflow_datasets as tfds
 from tensorflow import keras
 from tensorflow.keras import layers
 
-from color3Dnet import LiDARCarDataset
-from color3Dnet.utils import *
+import LiDARCarDataset
+from utils import *
 
 
 def main(paths, granularity='manufacturer_main', split=0.2, augmentation_split=False, strict_split=False, shuffle=True,
