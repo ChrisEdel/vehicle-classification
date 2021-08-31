@@ -10,8 +10,8 @@ import tensorflow_datasets as tfds
 from tensorflow import keras
 from tensorflow.keras import layers
 
-import LiDARCarDataset
-from utils import *
+from color3Dnet import LiDARCarDataset
+from color3Dnet.utils import *
 
 
 def main(paths, granularity='manufacturer_main', split=0.2, augmentation_split=False, strict_split=False, shuffle=True,
@@ -24,7 +24,7 @@ def main(paths, granularity='manufacturer_main', split=0.2, augmentation_split=F
     print('Experiment name:', experiment_name)
 
     if not tensorflow_data_dir:
-        tensorflow_data_dir = os.path.join(experiment_name, 'tensorflow_data')
+        tensorflow_data_dir = os.path.join(experiment_name, '../tensorflow_data')
     if not os.path.exists(tensorflow_data_dir):
         os.mkdir(tensorflow_data_dir)
 
