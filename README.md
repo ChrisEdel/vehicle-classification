@@ -15,8 +15,8 @@
 ```python3 color3Dnet.py -h```
 
 The data for training and testing the neural network can be downloaded [here](https://drive.google.com/file/d/1JBKiznmEAJ4bmBXLSUrOOJJwTacLlc63/view?usp=sharing). Note that this data is already preprocessed with:
-  - Floor filter 0.3
-  - Distance filter 0.05
+  - Floor filter: 0.3
+  - Distance filter: 0.05
   - Smoothening: 0.01
   - Subsampling: 10 000
 ## Results
