@@ -6,12 +6,16 @@ from pprint import pprint
 from time import time
 from uuid import uuid4
 
+import tensorflow as tf
 import tensorflow_datasets as tfds
 from tensorflow import keras
 from tensorflow.keras import layers
 
+import matplotlib.pyplot as plt
+import numpy as np
+
 import LiDARCarDataset
-from utils import *
+from utils import get_time_str, check_gpu, plot_confusion_matrix, write_data_distribution, labels_iter
 
 
 def main(paths, granularity='manufacturer_main', split=0.2, augmentation_split=False, strict_split=False, shuffle=True,
@@ -241,32 +245,36 @@ def main(paths, granularity='manufacturer_main', split=0.2, augmentation_split=F
         train_loss, train_acc = model.evaluate(ds_train)
         val_loss, val_acc = model.evaluate(ds_test)
 
-    print('Create and save confusion matrix for training data')
     # confusion matrix train
+    print('Predict training data for confusion matrix creation')
     with tf.device(device):
         train_pred = model.predict(ds_train)
     train_pred = np.argmax(train_pred, axis=1)
     cm = np.asmatrix(tf.math.confusion_matrix(list(map(int, labels_iter(ds_train))), train_pred))
 
+    print('Create and save confusion matrix for training data')
     plt.clf()
     plot_confusion_matrix(cm, classes, normalize=False, title='CM - train')
     plt.savefig(os.path.join(artifacts_dir, 'cm-train-{}.png'.format(experiment_name)))
 
+    print('Create and save normalized confusion matrix for training data')
     plt.clf()
     plot_confusion_matrix(cm, classes, normalize=True, title='CM - train - norm')
     plt.savefig(os.path.join(artifacts_dir, 'cm-train-norm-{}.png'.format(experiment_name)))
 
-    print('Create and save confusion matrix for test data')
     # confusion matrix test
+    print('Predict test data for confusion matrix creation')
     with tf.device(device):
         test_pred = model.predict(ds_test)
     test_pred = np.argmax(test_pred, axis=1)
     cm = np.asmatrix(tf.math.confusion_matrix(list(map(int, labels_iter(ds_test))), test_pred))
 
+    print('Create and save confusion matrix for test data')
     plt.clf()
     plot_confusion_matrix(cm, classes, normalize=False, title='CM - test')
     plt.savefig(os.path.join(artifacts_dir, 'cm-test-{}.png'.format(experiment_name)))
 
+    print('Create and save normalized confusion matrix for test data')
     plt.clf()
     plot_confusion_matrix(cm, classes, normalize=True, title='CM - test - norm')
     plt.savefig(os.path.join(artifacts_dir, 'cm-test-norm-{}.png'.format(experiment_name)))
