@@ -327,7 +327,7 @@ if __name__ == '__main__':
     parser.add_argument('--normalize-distr', metavar='NORMALIZE_DISTR', type=bool, default=False, help='If set to True, '
                         'the distribution of the data is normalized, such that the number of examples used for each '
                                                                                     'class is the same for all classes')
-    parser.add_argument('--color', metavar='COLOR', type=bool, default=True, help='If set to True, color values are'
+    parser.add_argument('--color', metavar='COLOR', type=bool, default=True, help='If set to True, color values are '
                                                                                   'used')
     parser.add_argument('--augmented', metavar='AUGMENTED', type=bool, default=True, help='If set to False, no augmented '
                                                                                           'data is used')

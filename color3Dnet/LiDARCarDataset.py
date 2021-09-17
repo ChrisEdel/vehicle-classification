@@ -348,7 +348,7 @@ class LiDARCarDataset(tfds.core.GeneratorBasedBuilder):
                         if augmented or 'augmented' not in filepath:
                             self.files.append(filepath)
 
-        # check for duplicate filenames:
+        # check for duplicate filenames
         filenames = set()
         for filepath in self.files:
             filename = os.path.basename(filepath)
