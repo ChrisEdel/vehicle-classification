@@ -41,6 +41,8 @@ def main(paths, granularity='manufacturer_main', split=0.2, augmentation_split=F
         random_seed = random.randint(0, sys.maxsize)
     print('Using random seed:', random_seed)
 
+    arguments = locals()
+
     # fix compatibility with RTX cards:
     from tensorflow.compat.v1 import ConfigProto
     from tensorflow.compat.v1 import InteractiveSession
@@ -50,8 +52,6 @@ def main(paths, granularity='manufacturer_main', split=0.2, augmentation_split=F
     session = InteractiveSession(config=config)
 
     tf.random.set_seed(random_seed)
-
-    arguments = locals()
 
     builder_kwargs = {'path': paths,
                       'granularity': granularity,
