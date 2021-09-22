@@ -45,6 +45,9 @@ def main(paths, granularity='manufacturer_main', split=0.2, augmentation_split=F
 
     arguments = locals()
 
+    physical_device = list(filter(lambda physical_device: physical_device.name.endswith(device[1:]), tf.config.list_physical_devices()))[0]
+    tf.config.experimental.set_memory_growth(physical_device, True)
+
     builder_kwargs = {'path': paths,
                       'granularity': granularity,
                       'split': split,
