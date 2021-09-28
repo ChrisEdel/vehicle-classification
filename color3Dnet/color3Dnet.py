@@ -10,6 +10,8 @@ import tensorflow as tf
 import tensorflow_datasets as tfds
 from tensorflow import keras
 from tensorflow.keras import layers
+from tensorflow.compat.v1 import ConfigProto
+from tensorflow.compat.v1 import InteractiveSession
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -43,10 +45,7 @@ def main(paths, granularity='manufacturer_main', split=0.2, augmentation_split=F
 
     arguments = locals()
 
-    # fix compatibility with RTX cards:
-    from tensorflow.compat.v1 import ConfigProto
-    from tensorflow.compat.v1 import InteractiveSession
-
+    # ensure compatibility with RTX cards:
     config = ConfigProto()
     config.gpu_options.allow_growth = True
     session = InteractiveSession(config=config)
