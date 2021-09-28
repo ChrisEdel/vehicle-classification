@@ -8,18 +8,6 @@ import re
 
 DATE_PATTERN = re.compile('[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}')
 
-# TODO(dataset): Markdown description  that will appear on the catalog page.
-_DESCRIPTION = """
-Description is **formatted** as markdown.
-
-It should also contain any processing which has been applied (if any),
-(e.g. corrupted example skipped, images cropped,...):
-"""
-
-# TODO(dataset): BibTeX citation
-_CITATION = """
-"""
-
 DEFAULT_LABEL = 'unlabeled'
 
 CAR = ['no', 'yes', DEFAULT_LABEL]
@@ -308,17 +296,12 @@ GRANULARITY = {'car': CAR,
 
 
 class LiDARCarDataset(tfds.core.GeneratorBasedBuilder):
-    """DatasetBuilder for dataset dataset."""
 
     VERSION = tfds.core.Version('1.0.0')
-    RELEASE_NOTES = {
-        '1.0.0': 'Initial release.',
-    }
 
     def __init__(self, path, granularity, split=0.2, augmentation_split=False, strict_split=False, shuffle=True,
                  shuffle_pointcloud=False, normalize_distr=False, random_seed=None, color=False, augmented=True, *args,
                  **kwargs):
-        # def __init__(self, path, granularity, split=0.2, *args, **kwargs):
         try:
             self.labels = GRANULARITY[granularity]
         except KeyError:
@@ -373,36 +356,26 @@ class LiDARCarDataset(tfds.core.GeneratorBasedBuilder):
                 for i in range(count - lowest_count):
                     self.remove_file_with_label(label)
 
-        # create random seeds for pointcloud shuffle
+        # create random seeds for point cloud shuffle
         self.shuffle_pointcloud_seeds = [random.randint(0, sys.maxsize) for _ in range(len(self.files))]
 
     def _info(self) -> tfds.core.DatasetInfo:
         """Returns the dataset metadata."""
-        # TODO(dataset): Specifies the tfds.core.DatasetInfo object
         return tfds.core.DatasetInfo(
             builder=self,
-            description=_DESCRIPTION,
             features=tfds.features.FeaturesDict({
-                # These are the features of your dataset like images, labels ...
                 'pointcloud': tfds.features.Tensor(shape=(None, 6 if self.color else 3), dtype=tf.float32),
                 'label': tfds.features.ClassLabel(names=self.labels),
             }),
-            # If there's a common (input, target) tuple from the
-            # features, specify them here. They'll be used if
-            # `as_supervised=True` in `builder.as_dataset`.
-            supervised_keys=('pointcloud', 'label'),  # Set to `None` to disable
-            homepage='https://dataset-homepage/',
-            citation=_CITATION,
+            supervised_keys=('pointcloud', 'label')
         )
 
     def _split_generators(self, dl_manager: tfds.download.DownloadManager):
         """Returns SplitGenerators."""
-        # ensure that both test and train have the same number of examples of each class
         test_files = []
         train_files = []
         if self.normalize_distr + self.augmentation_split + self.strict_split > 1:
             raise Exception('Invalid dataset builder arguments: too many split arguments are True')
-        # random shuffeling still makes the split random
         if self.normalize_distr:
             count = {label: 0 for label in self.labels}
 
@@ -450,7 +423,6 @@ class LiDARCarDataset(tfds.core.GeneratorBasedBuilder):
 
     def _generate_examples(self, files):
         """Yields examples."""
-        # TODO(dataset): Yields (key, example) tuples from the dataset
         for i, filepath in enumerate(files):
             name = os.path.basename(filepath)
             yield name.encode('utf-8', 'replace').decode(), {
@@ -539,15 +511,3 @@ class LiDARCarDataset(tfds.core.GeneratorBasedBuilder):
                 return label
 
         return DEFAULT_LABEL
-
-        # Code for extraction without a list of valid classes
-        # name_arr = name.split('_')
-        # if self.granularity == 'car':
-        #    label = 'yes'
-        # elif self.granularity == 'manufacturer':
-        #    label = name_arr[0].lower()
-        # elif self.granularity == 'type':
-        #    label = '{}_{}'.format(name_arr[0].lower(), name_arr[1].lower())
-        # else:
-        #    raise Exception('Invalid level of granularity: {}'.format(self.granularity))
-        # return label
