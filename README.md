@@ -8,7 +8,20 @@ Here you can find the instructions on how to run the iOS app.
 3. Connect a compatible Apple device to your machine running Xcode. Note: Since the app uses the LiDAR scanner, it only works on Apple devices with a LiDAR scanner. It is not possible to run this app in the simulator or on an Apple device without a LiDAR scanner.
 4. Follow this guide to run the app: [Running Your App in the Simulator or on a Device](https://developer.apple.com/documentation/xcode/running-your-app-in-the-simulator-or-on-a-device)
 Note: As mentioned before, running the app in the simulator will not work.
-## Data Management
+## Preprocessing and Data Augmentation
+Here you can find the install instructions for the preprocessing/data augmentation program called ``vis_c`` on Ubuntu.
+
+1. Run ``pcl_vis_c_setup.sh`` to install PCL and ``vis_c`` dependencies.
+2. Create a directory ``build`` in the same directory as the files ``main.cpp`` and ``CMakeLists.txt``.
+3. Go into the ``build`` directory with ``cd build`` and execute ``cmake ..`` then, execute ``make``.
+4. Run ``export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib``.
+5. Execute ``./vis_c`` to check if it is working.
+
+    Optional:
+
+6. To make ``vis_c`` available on the entire machine execute ``sudo cp vis_c /usr/local/bin``.
+7. To make step 4 permanent add ``LD_LIBRARY_PATH=/usr/local/lib`` to the file ``/etc/environment`` or extend the entry, if ``LD_LIBRARY_PATH`` is already in there; you need to log out and back in for the change to take effect.
+
 ## Neural Network
 Here you can find the instructions on how to train and test our neural network.
 
