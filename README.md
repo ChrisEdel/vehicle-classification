@@ -1,6 +1,13 @@
 # Master Project
 ## Prerequisites
 ## iOS App
+Here you can find the instructions on how to run the iOS app.
+
+1. Clone this repository.
+2. Open the `ios_app` directory with Xcode.
+3. Connect a compatible Apple device to your machine running Xcode. Note: Since the app uses the LiDAR scanner, it only works on Apple devices with a LiDAR scanner. It is not possible to run this app in the simulator or on an Apple device without a LiDAR scanner.
+4. Follow this guide to run the app: [Running Your App in the Simulator or on a Device](https://developer.apple.com/documentation/xcode/running-your-app-in-the-simulator-or-on-a-device)
+Note: As mentioned before, running the app in the simulator will not work.
 ## Data Management
 ## Neural Network
 Here you can find the instructions on how to train and test our neural network.
