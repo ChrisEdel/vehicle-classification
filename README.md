@@ -60,3 +60,5 @@ Different options were used in order to examine the corresponding training time 
 | ![Training time needed to reach an accuracy of over 90%.%](https://github.com/ChrisEdel/vehicle-classification/blob/main/images/time.png) | 
 |:--:| 
 | *Training time needed to reach an accuracy of over 90%.* |
+
+More information can be found in the corresponding thesis.
