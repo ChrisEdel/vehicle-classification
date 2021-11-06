@@ -57,8 +57,24 @@ Different options were used in order to examine the corresponding training time 
 |:--:| 
 | *Number of epochs needed to reach an accuracy of over 90%.* |
 
-| ![Training time needed to reach an accuracy of over 90%.%](images/time.png) | 
+| ![Training time needed to reach an accuracy of over 90%.](images/time.png) | 
 |:--:| 
 | *Training time needed to reach an accuracy of over 90%.* |
 
-More information can be found in the corresponding thesis.
+### Color3DNet
+The following graphs show the train and test accuracies of the Color3DNet during training for different configurations. The train/test split used was 80/20 and the batch size used was 20. 
+
+| ![Training with point clouds of size 10 000 classifying car makes.](images/10k_split_0.2_original_color_avg_accuracy_30_epochs.png) | 
+|:--:| 
+| *Training with point clouds of size 10 000 classifying car makes.* |
+
+| ![Training with point clouds of size 25 000 classifying car makes.](images/25k_split_0.2_BS_20_avg_accuracy_30_epochs.png) | 
+|:--:| 
+| *Training with point clouds of size 25 000 classifying car makes.* |
+
+| ![Training with point clouds of size 10 000 classifying car models.](images/10k_split_0.2_models_avg_accuracy_30_epochs.png) | 
+|:--:| 
+| *Training with point clouds of size 10 000 classifying car models.* |
+
+\
+More information can be found in the corresponding theses.
