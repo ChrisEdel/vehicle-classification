@@ -44,3 +44,19 @@ The data for training and testing the neural network can be downloaded [here](ht
   - Smoothening: 0.01
   - Subsampling: 10 000
 ## Results
+Here you can find the summary of the most important results obtained in both theses.
+
+# Infrastructure
+Different options were used in order to examine the corresponding training time of the neural network. The most important results compare the training time of the neural network when using different CPUs and GPUs, as well as the epochs and time needed in order to reach an accuracy of over 90%.
+
+| ![Average runtimes of an epoch with a batch size of 6.](https://github.com/ChrisEdel/vehicle-classification/blob/main/images/cpu_vs_gpu.png) | 
+|:--:| 
+| *Average runtimes of an epoch with a batch size of 6.* |
+
+| ![Number of epochs needed to reach an accuracy of over 90%.](https://github.com/ChrisEdel/vehicle-classification/blob/main/images/epochs.png) | 
+|:--:| 
+| *Number of epochs needed to reach an accuracy of over 90%.* |
+
+| ![Training time needed to reach an accuracy of over 90%.%](https://github.com/ChrisEdel/vehicle-classification/blob/main/images/time.png) | 
+|:--:| 
+| *Training time needed to reach an accuracy of over 90%.* |
