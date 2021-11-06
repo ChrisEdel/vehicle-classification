@@ -1,5 +1,4 @@
 # Master Project
-## Prerequisites
 ## iOS App
 Here you can find the instructions on how to run the iOS app.
 
@@ -45,4 +44,3 @@ The data for training and testing the neural network can be downloaded [here](ht
   - Smoothening: 0.01
   - Subsampling: 10 000
 ## Results
-## Literature
