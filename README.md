@@ -1,4 +1,4 @@
-# Master Project
+# Vehicle Classification Using Commercial Off-The-Shelf LiDAR and Camera Sensors (Master's Project 2021)
 ## iOS App
 Here you can find the instructions on how to run the iOS app.
 
