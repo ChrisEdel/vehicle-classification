@@ -24,15 +24,17 @@ def main(paths, granularity='manufacturer_main', split=0.2, augmentation_split=F
          random_seed=None, shuffle_pointcloud=False, normalize_distr=False, color=True, augmented=True,
          num_points=10000, batch_size=20, epochs=30, dropout=0.3, device='/device:CPU:0', tensorflow_data_dir=None,
          artifacts_dir=None):
+    # list present gpus
+    check_gpu()
+
     uuid = str(uuid4())
     experiment_name = 'color3Dnet-{}'.format(uuid)
-    os.mkdir(experiment_name)
     print('Experiment name:', experiment_name)
 
     if not tensorflow_data_dir:
         tensorflow_data_dir = os.path.join(experiment_name, 'tensorflow_data')
     if not os.path.exists(tensorflow_data_dir):
-        os.mkdir(tensorflow_data_dir)
+        os.makedirs(tensorflow_data_dir)
 
     if not artifacts_dir:
         artifacts_dir = experiment_name
@@ -79,8 +81,8 @@ def main(paths, granularity='manufacturer_main', split=0.2, augmentation_split=F
     ds_train = ds_train.prefetch(tf.data.experimental.AUTOTUNE)
 
     # test pipeline:
-    ds_test = ds_test.batch(batch_size)
     ds_test = ds_test.cache()
+    ds_test = ds_test.batch(batch_size)
     ds_test = ds_test.prefetch(tf.data.experimental.AUTOTUNE)
 
     ### NEURAL NETWORK ###
@@ -138,7 +140,7 @@ def main(paths, granularity='manufacturer_main', split=0.2, augmentation_split=F
         points = layers.Cropping2D(cropping=((0, 0), (0, 3)))(x)
         colors = layers.Cropping2D(cropping=((0, 0), (3, 0)))(x)
         # get rid of the extra dim again
-        points = layers.Reshape((num_points, 3))(colors)
+        points = layers.Reshape((num_points, 3))(points)
         colors = layers.Reshape((num_points, 3))(colors)
         return points, colors
 
@@ -225,7 +227,7 @@ def main(paths, granularity='manufacturer_main', split=0.2, augmentation_split=F
     plt.xlabel('epoch')
     plt.legend(['train', 'test'], loc='upper left')
     filename = os.path.join(artifacts_dir, 'accuracy-{}.png'.format(experiment_name))
-    plt.savefig(filename)
+    plt.savefig(filename, dpi=300)
 
     print('Create and save loss graph')
     # loss graph:
@@ -237,7 +239,7 @@ def main(paths, granularity='manufacturer_main', split=0.2, augmentation_split=F
     plt.xlabel('epoch')
     plt.legend(['train', 'test'], loc='upper left')
     filename = os.path.join(artifacts_dir, 'loss-{}.png'.format(experiment_name))
-    plt.savefig(filename)
+    plt.savefig(filename, dpi=300)
 
     print('Save raw history')
     # raw history
@@ -262,12 +264,12 @@ def main(paths, granularity='manufacturer_main', split=0.2, augmentation_split=F
     print('Create and save confusion matrix for training data')
     plt.clf()
     plot_confusion_matrix(cm, classes, normalize=False, title='CM - train')
-    plt.savefig(os.path.join(artifacts_dir, 'cm-train-{}.png'.format(experiment_name)))
+    plt.savefig(os.path.join(artifacts_dir, 'cm-train-{}.png'.format(experiment_name)), dpi=300)
 
     print('Create and save normalized confusion matrix for training data')
     plt.clf()
     plot_confusion_matrix(cm, classes, normalize=True, title='CM - train - norm')
-    plt.savefig(os.path.join(artifacts_dir, 'cm-train-norm-{}.png'.format(experiment_name)))
+    plt.savefig(os.path.join(artifacts_dir, 'cm-train-norm-{}.png'.format(experiment_name)), dpi=300)
 
     # confusion matrix test
     print('Predict test data for confusion matrix creation')
@@ -279,12 +281,12 @@ def main(paths, granularity='manufacturer_main', split=0.2, augmentation_split=F
     print('Create and save confusion matrix for test data')
     plt.clf()
     plot_confusion_matrix(cm, classes, normalize=False, title='CM - test')
-    plt.savefig(os.path.join(artifacts_dir, 'cm-test-{}.png'.format(experiment_name)))
+    plt.savefig(os.path.join(artifacts_dir, 'cm-test-{}.png'.format(experiment_name)), dpi=300)
 
     print('Create and save normalized confusion matrix for test data')
     plt.clf()
     plot_confusion_matrix(cm, classes, normalize=True, title='CM - test - norm')
-    plt.savefig(os.path.join(artifacts_dir, 'cm-test-norm-{}.png'.format(experiment_name)))
+    plt.savefig(os.path.join(artifacts_dir, 'cm-test-norm-{}.png'.format(experiment_name)), dpi=300)
 
     print('Save data distribution in training set')
     # data distribution train
