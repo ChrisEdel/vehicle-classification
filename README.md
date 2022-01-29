@@ -1,13 +1,20 @@
 # Vehicle Classification Using Commercial Off-The-Shelf LiDAR and Camera Sensors (Master's Project 2021)
-## iOS App
-Here you can find the instructions on how to run the iOS app.
 
+## Project Summary
+
+The aim of this project is to use the LiDAR sensor of the new Apple devices in combination with the camera sensors in order to classify cars (based on the make and model) using deep learning. We used the iPhone 12 Pro for gathering our data (i.e. labelled 3D scans of cars). Overall, we collected about 400 different scans. Since these scans tend to get quite big (in our case about 500 MB each), preprocessing is necessary. Furthermore, in order increase the size of the dataset, we implemented and used several data augmentation methods. The preprocessed and augmented data is then given as input to our custom neural network, the Color3DNet, which can classify the car makes and even the car models. More information on all these topics can be found below, along with specific instructions on how to run this project.
+
+## Usage Instructions
+
+Here you can find the instructions on how to run the different parts of the projects.
+
+### iOS App
 1. Clone this repository.
 2. Open the `ios_app` directory with Xcode.
 3. Connect a compatible Apple device to your machine running Xcode. Note: Since the app uses the LiDAR scanner, it only works on Apple devices with a LiDAR scanner. It is not possible to run this app in the simulator or on an Apple device without a LiDAR scanner.
 4. Follow this guide to run the app: [Running Your App in the Simulator or on a Device](https://developer.apple.com/documentation/xcode/running-your-app-in-the-simulator-or-on-a-device)
 Note: As mentioned before, running the app in the simulator will not work.
-## Preprocessing and Data Augmentation
+### Preprocessing and Data Augmentation
 Here you can find the install instructions for the preprocessing/data augmentation program called ``vis_c`` on Ubuntu.
 
 1. Run ``pcl_vis_c_setup.sh`` to install PCL and ``vis_c`` dependencies.
@@ -21,9 +28,7 @@ Here you can find the install instructions for the preprocessing/data augmentati
 6. To make ``vis_c`` available on the entire machine execute ``sudo cp vis_c /usr/local/bin``.
 7. To make step 4 permanent add ``LD_LIBRARY_PATH=/usr/local/lib`` to the file ``/etc/environment`` or extend the entry, if ``LD_LIBRARY_PATH`` is already in there; you need to log out and back in for the change to take effect.
 
-## Neural Network
-Here you can find the instructions on how to train and test our neural network.
-
+### Neural Network
 1. Clone this repository.
 2. If you have access to a GPU and want to use that GPU for training the neural network, you need to have CUDA installed (tested with *CUDA 11.3* (on Linux) and *CUDA 11.2* (on Windows 10)). Please refer to the corresponding installation guide:  
   - [Linux](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
@@ -43,6 +48,7 @@ The data for training and testing the neural network can be downloaded [here](ht
   - Distance filter: 0.05
   - Smoothening: 0.01
   - Subsampling: 10 000
+
 ## Results
 Here you can find the summary of the most important results obtained in both theses.
 
